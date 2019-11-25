@@ -38,3 +38,25 @@ twig:
 sensio_framework_extra:
    router:
         annotations: false
+
+fos_rest:
+    format_listener:
+        rules:
+            path: ^/
+            priorities: [ json ]
+            fallback_format: json
+            prefer_extension: true
+    serializer:
+        serialize_null: true
+    body_converter:
+        enabled: true
+        validate: true
+        validation_errors_argument: validationErrors
+    view:
+        formats:
+            json: true
+        view_response_listener: "force"
+        mime_types: {'jsonp': ['application/javascript+jsonp']}
+    body_listener:
+        enabled: true
+    param_fetcher_listener: true
